@@ -12,3 +12,16 @@ def load_env_variables(path):
             if line and not line.startswith('#'):
                 key, value = line.split('=', 1)
                 os.environ[key.strip()] = value.strip()
+
+# write a timing function to measure the execution time of a function
+
+import time
+
+def timing(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"Function {func.__name__} took {end_time - start_time:.2f} seconds to execute.")
+        return result
+    return wrapper
